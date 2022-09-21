@@ -1,0 +1,3 @@
+downloaded.file.name:	./Annotations/hg38.fa.out.gz
+download.site:	https://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/latest/hg38.fa.out.gz
+download.date:	2022-09-13

@@ -1,0 +1,5 @@
+sample_id	Number_of_cytosines	Average_methylation	Percent_digital	Number_of_SINE_Alu_annotations	Number_of_cytosines_in_SINE_Alu_annotations	Percent_cytosines_in_SINE_Alu_annotations	Number_of_duplicated_cytosines_in_coverage_file	Mean_methylation_across_SINE_Alu_only
+i501_A1_i701_KG1a_Alu_CpG-meth_processed.cov.gz	11346	86.6986905995822	98.2020095187731	2553	11346	100	0	86.6986905995822
+i501_A2_i702_KG1a_Alu_CpG-meth_processed.cov.gz	13655	85.7764796366283	97.4075430245331	2867	13655	100	0	85.7764796366283
+i501_A3_i703_KG1a_Alu_CpG-meth_processed.cov.gz	9866	85.2692512943177	97.5065882829921	2063	9866	100	0	85.2692512943177
+i504_D7_i707_KG1a_Alu_CpG-meth_processed.cov.gz	138	65.9420289855072	100	29	138	100	0	65.9420289855072
