@@ -34,57 +34,57 @@ This can be done using the R script provided, or downloaded directly for USCS : 
 ```
 source("./scripts/Create_SINE.Alu_anno_function.R")
 
-Download.Annotation(URL = "https://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/latest/hg38.fa.out.gz", 
+Download.Annotation(URL = "https://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/latest/hg38.fa.out.gz",
   annotation.dir = "./Annotations/")
   ```
 #### STEP 1B: Filter annotation file for SINE-Alu elements:
 ```
 source("./scripts/Create_SINE.Alu_anno_function.R")
-Create.Filtered.Annotation(anno.file = "./Annotations/hg38.fa.out.gz", 
+Create.Filtered.Annotation(anno.file = "./Annotations/hg38.fa.out.gz",
                            annotation.dir = "./Annotations/",
                            filtered.anno.name = "SINE.Alu.anno.txt")
 ```
 
 #### STEP 2: Run cov summary script:
 ```
-source("./scripts/scTEMseq_cov_summary_scNMT_V2.R")
+source("./scripts/scTEMseq_cov_summary.R")
 ```
 This can be done without the annotation file, but it is advised to use the annotaiton file to obtain additional QC metrics.
 ```
 scTEMseq_cov_summary(cov.dir = "./examples/",  
                      output.dir = "", # By default, the output will be the 'cov.dir'.
-                     cov.suffix = "cov.gz", 
-                     SINE.Alu.anno = "NULL", 
+                     cov.suffix = "cov.gz",
+                     SINE.Alu.anno = "NULL",
                      run.parallel = FALSE)
 ```
 Using the annotation file can be performed sequentially (using one-core) or run in parallel to speed the process up if you have a lot of samples:
 ```
 scTEMseq_cov_summary(cov.dir = "./examples/",  
                      output.dir = "", # By default, the output will be the 'cov.dir'.
-                     cov.suffix = "cov.gz", 
-                     SINE.Alu.anno = "./Annotations/SINE.Alu.anno.txt", 
+                     cov.suffix = "cov.gz",
+                     SINE.Alu.anno = "./Annotations/SINE.Alu.anno.txt",
                      run.parallel = FALSE)
 ```
 Change parallel to 'TRUE' if you have a lot of samples (>300). In theory, this should work across both UNIX and windows machines, but has currently only been tested on windows OS. By default, it will use 1 core less than is totally available. Adjust the script as required to further optimise or if it has difficulties running on your machine.
 ```
 scTEMseq_cov_summary(cov.dir = "./examples/",  
                      output.dir = "", # By default, the output will be the 'cov.dir'.
-                     cov.suffix = "cov.gz", 
-                     SINE.Alu.anno = "./Annotations/SINE.Alu.anno.txt", 
+                     cov.suffix = "cov.gz",
+                     SINE.Alu.anno = "./Annotations/SINE.Alu.anno.txt",
                      run.parallel = TRUE)
 ```
 
 Output:
 --------
-This produces a tab-deliminated text file which contains the columns: 
-*   sample_id	
-*   Number_of_cytosines	
-*   Average_methylation	
-*   Percent_digital	
-*   Number_of_SINE_Alu_annotations	
-*   Number_of_cytosines_in_SINE_Alu_annotations	
-*   Percent_cytosines_in_SINE_Alu_annotations	
-*   Number_of_duplicated_cytosines_in_coverage_file	
+This produces a tab-deliminated text file which contains the columns:
+*   sample_id
+*   Number_of_cytosines
+*   Average_methylation
+*   Percent_digital
+*   Number_of_SINE_Alu_annotations
+*   Number_of_cytosines_in_SINE_Alu_annotations
+*   Percent_cytosines_in_SINE_Alu_annotations
+*   Number_of_duplicated_cytosines_in_coverage_file
 *   Mean_methylation_across_SINE_Alu_only
 
 N.B. The cov_summary script can also be used to measure cytosines and obtain methylation levels across different regions (other than SINE-Alu), as long as the annotation file used contains the specified columns above. If this is done, it is recommended to rename the last columns in the text file as they currently defaulted to 'SINE.Alu'. A feature release may automate this process if there's enough use/interest.
@@ -97,7 +97,7 @@ This is to get people a bit more excited/invested in the idea of using scTEM-seq
 CORRELATION
 
 HEATMAP
-<p align="center"> 
+<p align="center">
 <img src="Fig3_KG1a_TEtranscripts_heatmap.svg" style="width: 50%; height: 50%"/>​
 </p>
 
@@ -105,10 +105,10 @@ HEATMAP
 
 Data:
 --------
-The raw data is accessible at GEO [GSE171029](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE171029). 
+The raw data is accessible at GEO [GSE171029](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE171029).
 
 
 Acknowledgements/Contact:
 --------
 Computational analysis:  
-Experimental protocol: 
+Experimental protocol:

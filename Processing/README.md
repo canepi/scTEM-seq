@@ -9,7 +9,7 @@ Content:
 
 Processing:
 --------
-This includes the commands used to generate the coverage files. This assumes you have unix environment, and have already created the genome index files for HISAT2 (or already utilise an appropriate alternative i.e. STAR aligner).
+This includes the commands used to generate the coverage files. This assumes you have unix environment, and have already created the genome index files using Bowtie 2. Hisat2 indexed genomes are also usable by bismark, but needs the additional '--hisat2' flag. If in doubt, check the very well written [Bismark documentation for setup and general usage](https://rawgit.com/FelixKrueger/Bismark/master/Docs/Bismark_User_Guide.html).
 
 
 #### STEP 1: Demultiplexing
@@ -28,7 +28,7 @@ Output = An R1 and R2 fastq file per library pool sequenced.
 Troubleshoot = If all pools end up in 'unaligned' double check the barcode sequences in the the 'SampleSheet.csv'. Often it's because you need to modify the second barcode to the 'reverse compliment' sequence.
 
 #### STEP 1B: Demultiplex secondary indexes with cutadapt
-This is where you will utilise the barcodes/indexes that were added to your samples before being pooled. Utilise or modify the files in '/barcodes/' that are in fasta format for this step. 
+This is where you will utilise the barcodes/indexes that were added to your samples before being pooled. Utilise or modify the files in '/barcodes/' that are in fasta format for this step.
 
 ```
 cutadapt -e 0.15 --discard-untrimmed --no-indels \
@@ -55,8 +55,8 @@ for k in ${sample}
 do
 
 	echo -n ${k}" " >> readcounts.txt; echo $(zcat ${k}|wc -l)/4|bc >> readcounts.txt
-	
-done	
+
+done
 
 echo "Done - Didn't take too long!?"
 date +"%Y%m%d.%H%M%S %A"
@@ -76,7 +76,7 @@ Output = fastqc file per sample. Use multi-qc to collate them into a single file
 
 #### STEP 3: Bismark processing to .cov files
 #### STEP 3A: Trimming with trimgalore
-Trimming is performed with Trim Galore. For 150bp read lengths (used in Miseq kits), 10bp is removed from the 5’ and 3’ ends of both forward and reverse reads to ensure index sequences are removed. 
+Trimming is performed with Trim Galore. For 150bp read lengths (used in Miseq kits), 10bp is removed from the 5’ and 3’ ends of both forward and reverse reads to ensure index sequences are removed.
 
 ```
 trim_galore --clip_R1 10 --clip_R2 10 --three_prime_clip_R1 10 --three_prime_clip_R2 10 --paired input.file
@@ -84,7 +84,7 @@ trim_galore --clip_R1 10 --clip_R2 10 --three_prime_clip_R1 10 --three_prime_cli
 ```
 Output = Trimmed 'fastq.gz' R1 and R2 files.
 
-#### STEP 3B: Read alignment with bismark/Hisat2
+#### STEP 3B: Read alignment with Bismark
 Despite the conserved TE sequences targeted, scTEM-seq reads effectively map to the genome. Genome mapping is performed using Bismark. Reads are aligned in paired end and non-directional mode. *Unique mapping rate for scTEM-seq reads should be >60%*
 ```
 bismark --genome_folder /genome/folder/ --non_directional -1 input_1.fq.gz -2 input_2.fq.gz
@@ -92,7 +92,7 @@ bismark --genome_folder /genome/folder/ --non_directional -1 input_1.fq.gz -2 in
 Output = One '.bam' file per sample.
 
 #### Step 3C: Methylation extrtaction with bismark
-Bam files are then used for methylation extraction with the Bismark methylation extraction tool. Methylation extraction produces site specific methylation data that is easily readable for quantification of average methylation levels. 
+Bam files are then used for methylation extraction with the Bismark methylation extraction tool. Methylation extraction produces site specific methylation data that is easily readable for quantification of average methylation levels.
 
 ```
 bismark_methylation_extractor --paired-end --bedgraph input.bam
@@ -105,7 +105,7 @@ Output = One coverage (.cov.gz) file per sample.
 
 Output:
 --------
-This should produce individual coverage files per sample that can then be used to obtain 'global methylation levels' [following the steps in the parent directory](link). The size of the .cov file depends on the sequencing depth you've used. PROVIDE SOME EXAMPLE SIZES. 
+This should produce individual coverage files per sample that can then be used to obtain 'global methylation levels' [following the steps in the parent directory](link). The size of the .cov file depends on the sequencing depth you've used. PROVIDE SOME EXAMPLE SIZES.
 
 You can use either only the samples clearly passing QC (from STEP 2) or all samples to obtain global methylation levels, which can also provide additional QC metrics if you use the SINE-Alu annotation file. If no SINE-Alu annotation is used, you can only use fastqc (STEP 2B) and read count (STEP 2A) files to assess QC.
 
@@ -114,11 +114,11 @@ The subdirectory './scripts/shell' contains example scripts that we developed fo
 
 Acknowledgements/Contact:
 --------
-Computational analysis: 
-Experimental protocol: 
+Computational analysis:
+Experimental protocol:
 
 
 
 
-TO DO: 
+TO DO:
 1   Finish generalising some of the code (step 1B) and directory paths.
