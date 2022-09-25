@@ -1,6 +1,6 @@
 scTEM-seq
 =========
-This repo contains the scripts and relevant protocol information to support researchers to perform scTEMseq which is explained step-by-step with the release of the ['Protocol for targeted analysis of transposable element methylation levels and transcriptome in single cells using scTEM-seq'](https://www.nature.com/articles/s41598-022-09765-x). The focus of this repo is on 'how to' obtain the global methylation level from samples, as many labs already have their own preference for processing and analysing RNAseq data. At the end of this readme file is an example of the benefit of combining the global methylation level with the RNAseq data.
+This repo contains the scripts and relevant protocol information to support researchers to perform scTEMseq which is explained step-by-step with the release of the ['Protocol for targeted analysis of transposable element methylation levels and transcriptome in single cells using scTEM-seq'](https://www.nature.com/articles/s41598-022-09765-x). The focus of this repo is on 'how to' obtain the global methylation level from samples and not the processing and analysis of the expression data, as many labs already have their own preference for processing and analysing RNAseq data. At the end of this readme file is an example of the benefit of combining the global methylation level with the RNAseq data.
 
 
 <p align="center">
@@ -16,17 +16,17 @@ Content:
 * `/examples/`: Four example cov files and Coverage summary table.
 * `/Processing/`: Contains additional details and example scripts for processing the fastq files into coverage files (steps 127-131 in the protocol paper)
 * `/Protocol_related_material/`: This contains information directly related to the library prep steps leading up to the sequencing run.
-* `/scripts/`: R scripts with functions to obtain an up-to-date and filtered SINE-Alu annotation file, and produced coverage summary files from the cov files produced by scTEM-seq.
+* `/scripts/`: R scripts with functions to obtain an up-to-date and filtered SINE-Alu annotation file, and create coverage summary files from the cov files produced by scTEM-seq.
 
-N.B. The coverage summary script can also be used to obtain methlyation levels in other genomic contexts as long as the annotation file used is in the same format (with the same headers) as the example SINE-Alu annotaiton file provided here.
+N.B. The coverage summary script can also be used to obtain methylation levels in other genomic contexts as long as the annotation file used is in the same format (with the same headers) as the example SINE-Alu annotation file provided here.
 
 How to:
 --------
-Once you have obtained the coverage files (.cov) files following the sequencing and processing steps in the [scTEMseq protocol]() or [Processing subdirectory](Processing/Readme.md), you can obtain the global methylation estimates and additional QC info. by following the steps below.
+Once you have obtained the coverage files (.cov) files following the sequencing and processing steps in the [scTEMseq protocol]() or [Processing subdirectory](Processing/Readme.md), you can obtain the global methylation estimates and additional QC information by following the steps below.
 
 
 #### STEP 1: Create a (SINE-Alu) annotation file.
-The cov summary scripts can work without the annotation file, but it advised to use one to provide additional QC metrics. Additionally, the coverage summary script can be used on any '.cov' file to obtain methylation levels in other genomic contexts, as long as the annotation file used contains the minumum column names 'chr', 'start' and 'end'. This should be a text file (comma separated) with one element per line.
+The cov summary scripts can work without the annotation file, but it's advised to use one to provide additional QC metrics. Additionally, the coverage summary script can be used on any '.cov' file to obtain methylation levels in other genomic contexts, as long as the annotation file used contains the minumum column names 'chr', 'start' and 'end'. This should be a text file (comma separated) with one element per line.
 
 
 #### STEP 1A: Download annotation file:
@@ -49,7 +49,7 @@ Create.Filtered.Annotation(anno.file = "./Annotations/hg38.fa.out.gz",
 ```
 source("./scripts/scTEMseq_cov_summary.R")
 ```
-This can be done without the annotation file, but it is advised to use the annotaiton file to obtain additional QC metrics.
+This can be done without the annotation file, but it is advised to use the annotation file to obtain additional QC metrics.
 ```
 scTEMseq_cov_summary(cov.dir = "./examples/",  
                      output.dir = "", # By default, the output will be the 'cov.dir'.
@@ -57,7 +57,7 @@ scTEMseq_cov_summary(cov.dir = "./examples/",
                      SINE.Alu.anno = "NULL",
                      run.parallel = FALSE)
 ```
-Using the annotation file can be performed sequentially (using one-core) or run in parallel to speed the process up if you have a lot of samples:
+Using the annotation file can be looped sequentially (using one-core) or run in parallel to speed the process up if you have a lot of samples:
 ```
 scTEMseq_cov_summary(cov.dir = "./examples/",  
                      output.dir = "", # By default, the output will be the 'cov.dir'.
