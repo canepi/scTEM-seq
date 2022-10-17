@@ -3,7 +3,6 @@
 #PBS -l select=2:ncpus=4:mem=64GB 
 #PBS -l walltime=72:00:00            
 #PBS -j oe
-#PBS -q xeon4q
 #
 
 # STEP 3: Bismark processing to .cov files

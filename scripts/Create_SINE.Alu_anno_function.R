@@ -11,6 +11,7 @@
 # However, if the annotation file is downloaded from a different source, the filtering function will not work for a different format/source and will need to modified accordingly.
 # Future releases may enable a more flexible approach/options for filtering annotation files and sources.
 
+#  Load packages
 library(data.table)
 library(dplyr)
 
@@ -56,15 +57,11 @@ cat("Finished and saved download information in: ", save.download.info.name)
 }
 
 
-
-
-
 ### Automate Filtering
 
 Create.Filtered.Annotation <- function(anno.file = "./Annotations/hg38.fa.out.gz", 
                                        annotation.dir = "./Annotations/",
                                        filtered.anno.name = "SINE.Alu.anno.txt"){
-  
 
 ###### Create folder ########
   
@@ -95,4 +92,3 @@ cat("\nFinished. The saved file can now be used with the scTEMseq cov summary sc
   
 
 }
-

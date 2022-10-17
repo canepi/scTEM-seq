@@ -4,7 +4,6 @@
 #PBS -l walltime=5:00:00            
 #PBS -j oe
 #PBS -k oe
-#PBS -q xeon4q
 #
 
 

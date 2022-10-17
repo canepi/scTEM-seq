@@ -3,7 +3,6 @@
 #PBS -l select=1:ncpus=1:mem=16GB
 #PBS -l walltime=2:00:00
 #PBS -j oe
-#PBS -q xeon4q
 #
 
 

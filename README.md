@@ -77,38 +77,26 @@ scTEMseq_cov_summary(cov.dir = "./examples/",
 Output:
 --------
 This produces a tab-deliminated text file which contains the columns:
-*   sample_id
-*   Number_of_cytosines
-*   Average_methylation
-*   Percent_digital
-*   Number_of_SINE_Alu_annotations
-*   Number_of_cytosines_in_SINE_Alu_annotations
-*   Percent_cytosines_in_SINE_Alu_annotations
-*   Number_of_duplicated_cytosines_in_coverage_file
-*   Mean_methylation_across_SINE_Alu_only
+*   sample_id - name of the cov file.
+*   Number_of_cytosines - number of (unique) cytosine positions measured
+*   Average_methylation - global mean methylation level of the cell/file.
+*   Percent_digital - Percentage of cytosine residues/positions detected as either 100% methylated (1) or unmethylated (0).
+*   Number_of_SINE_Alu_annotations - number of SINE-Alu elements from the annotation file that overlaps/covers the cytosine positions in the cov file.
+*   Number_of_cytosines_in_SINE_Alu_annotations - number of cytosines that overlap with the annotation file. If there's a difference with 'Number_of_cytosines' then either the annotation file used wasn't the correct SINE-Alu annotation or there was off-target sequencing.
+*   Percent_cytosines_in_SINE_Alu_annotations - (Number_of_cytosines_in_SINE_Alu_annotations/Number_of_cytosines)*100
+*   Number_of_duplicated_cytosines_in_coverage_file - Number of cytosines positions with more than one methylation value.
+*   Mean_methylation_across_SINE_Alu_only - global mean methylation level of the cell/file in only cytosines that overlap with the annotation file.
 
-N.B. The cov_summary script can also be used to measure cytosines and obtain methylation levels across different regions (other than SINE-Alu), as long as the annotation file used contains the specified columns above. If this is done, it is recommended to rename the last columns in the text file as they currently defaulted to 'SINE.Alu'. A feature release may automate this process if there's enough use/interest.
+N.B. **The last 5 columns will only be present if an annotation file is provided.** The cov_summary script can also be used to measure cytosines and obtain methylation levels across different regions (other than SINE-Alu), as long as the annotation file used contains the specified columns above. If this is done, it is recommended to rename the last columns in the text file as they currently defaulted to 'SINE.Alu'. A feature release may automate this process if there's enough use/interest.
 
-
-Example of combining the global methlyation level with expression signature:
---------
-This is to get people a bit more excited/invested in the idea of using scTEM-seq!
-
-CORRELATION
-
-HEATMAP
-<p align="center">
-<img src="Fig3_KG1a_TEtranscripts_heatmap.svg" style="width: 50%; height: 50%"/>​
-</p>
-
-
+The global methylation levels are then ready be analysed in conjunction with expression results (if you also performed RNAseq).
 
 Data:
 --------
-The raw data is accessible at GEO [GSE171029](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE171029).
+The raw data is accessible at GEO [GSE171029](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE171029).  
 
 
 Acknowledgements/Contact:
 --------
-Computational analysis:  
-Experimental protocol:
+Experimental protocol: Kooper Hunt, Dr Danielle Bond and Dr Heather Lee (heather.lee@newcastle.edu.au)
+Computational analysis: Dr Sean Burnard (sean.burnard@newcastle.edu.au)

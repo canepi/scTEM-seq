@@ -3,14 +3,13 @@
 #PBS -l select=1:ncpus=2:mem=4GB 
 #PBS -l walltime=1:00:00            
 #PBS -j oe
-#PBS -q xeon4q
 #
 
 
 ###Script for the quantifying of scTEM-seq demultiplexed fastq files. 
 #
 ##Run this script from the parent directory above 'outDir'. 
-##Input should all fastq files in the output directory of the scTEM-seq demultiplex script (cutadapt_demux.sh). 
+##Input should all fastq files in the output directory of the scTEM-seq demultiplex script (1B_cutadapt_demux.sh). 
 ##Output will be a txt file with the fastq file name and read count for each sample. 
 #
 ##Good for comparing read counts between samples and to the original pool fastq file. 

@@ -37,14 +37,8 @@ if(SINE.Alu.anno != "NULL"){
 covfiles=list.files(cov.dir, pattern = cov.suffix, full.names = TRUE) %>% .[order(.)]
 cat("\nFound", length(covfiles), "cov files to import.")
 if(length(covfiles)>300) message("If analysing a lot of samples (>300), it's worth running in parallel. Either way, consider testing the time taken to run a subset of files.")
+
 #covfiles=covfiles[1:10] ### To test the script on a small number of samples, unhash this line ###
-
-
-# Parallel optional - then change foreach loop from '%do' to '%dopar%'
-#N_CORES <- parallel::detectCores() # Detect how many cores are available
-#my.cl <- parallel::makeCluster((N_CORES-1), type = "PSOCK") # Make cluster using 'socket' which works across unix and windows! Using 1 core less than totally available to allow for other work to be done while waiting.
-#doParallel::registerDoParallel(cl = my.cl) # Register parallel options
-
 Cov_summary <- NULL
 
 if(SINE.Alu.anno == "NULL"){
@@ -140,12 +134,3 @@ write.table(Cov_summary, file = paste0(output.dir,"Coverage_Summary.txt"), sep =
 
 }
 ########################################################
-
-
-
-
-
-
-
-
-
