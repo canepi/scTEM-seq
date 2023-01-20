@@ -1,13 +1,13 @@
 scTEM-seq
 =========
-This repo contains the scripts and relevant protocol information to support researchers to perform scTEMseq which is explained step-by-step with the release of the ['Protocol for targeted analysis of transposable element methylation levels and transcriptome in single cells using scTEM-seq'](https://www.nature.com/articles/s41598-022-09765-x). The focus of this repo is on 'how to' obtain the global methylation level from samples and not the processing and analysis of the expression data, as many labs already have their own preference for processing and analysing RNAseq data. At the end of this readme file is an example of the benefit of combining the global methylation level with the RNAseq data.
+This repo contains the scripts and relevant protocol information to support researchers to perform scTEMseq which is explained step-by-step in the online ['Protocol for targeted analysis of transposable element methylation levels and transcriptome in single cells using scTEM-seq'](https://doi.org/10.21203/rs.3.pex-2075/v1). The focus of this repo is on 'how to' obtain the global methylation level from samples and not the processing and analysis of the expression data, as many labs already have their own preference for processing and analysing RNAseq data. At the end of this readme file is an example of the benefit of combining the global methylation level with the RNAseq data.
 
 
 <p align="center">
  <img src="scTEM-seq_workflow.png" style="width: 50%; height: 50%"/>​
 </p>
 
-For more details, you can also read the original methods publications [https://www.nature.com/articles/s41598-022-09765-x](https://www.nature.com/articles/s41598-022-09765-x) and associated protocol manuscript. []()
+For more details, you can also read the original methods publications [https://www.nature.com/articles/s41598-022-09765-x](https://www.nature.com/articles/s41598-022-09765-x) and associated protocol manuscript [https://protocolexchange.researchsquare.com/article/pex-2075/v1](https://protocolexchange.researchsquare.com/article/pex-2075/v1).
 
 
 Content:
@@ -22,7 +22,7 @@ N.B. The coverage summary script can also be used to obtain methylation levels i
 
 How to:
 --------
-Once you have obtained the coverage files (.cov) files following the sequencing and processing steps in the [scTEMseq protocol]() or [Processing subdirectory](Processing/Readme.md), you can obtain the global methylation estimates and additional QC information by following the steps below.
+Once you have obtained the coverage files (.cov) files following the sequencing and processing steps in the [scTEMseq protocol](https://doi.org/10.21203/rs.3.pex-2075/v1) or [Processing subdirectory](./Processing/Readme.md), you can obtain the global methylation estimates and additional QC information by following the steps below.
 
 
 #### STEP 1: Create a (SINE-Alu) annotation file.
